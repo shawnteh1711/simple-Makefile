@@ -1,3 +1,5 @@
+.PHONY	:	clean
+
 main	:	main.o add.o sub.o
 			gcc -Wall -g main.o add.o sub.o -o main
 
@@ -9,3 +11,6 @@ add.o	:	add.c add.h
 
 sub.o	:	sub.c sub.h
 			gcc -Wall -g -c sub.c -o sub.o
+
+clean	:
+			rm -f main main.o add.o sub.o
