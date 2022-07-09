@@ -1,35 +1,34 @@
-NAME		:= libft
+NAME				:= libft
 
-CC			:= gcc
+CC					:= gcc
 
-CFLAGS		:= -Wall -Wextra -Werror -g
+CFLAGS				:= -Wall -Wextra -Werror -g
 
-SRCS_DIR	:= ./srcs
+SRCS_DIR			:= ./srcs
 
-SRC			:= $(wildcard $(SRCS_DIR)/*.c)
+SRC					:= $(wildcard $(SRCS_DIR)/*.c)
 
-OBJ			:= $(patsubst $(SRCS_DIR)/%.c, %.o, $(SRC))
+OBJ					:= $(patsubst $(SRCS_DIR)/%.c, $(SRCS_DIR)/%.o, $(SRC))
 
-INC			:= -Iinc
+INC					:= -Iinc
 
-all			= $(NAME)
+all					: $(NAME)
 
-$(NAME)		: $(OBJ)
-			$(CC) $(CFLAGS) $(OBJ) -o $@
+$(NAME)				: $(OBJ)
+						$(CC) $(CFLAGS) $(OBJ) -o $@
 
+$(SRCS_DIR)/%.o		: $(SRCS_DIR)/%.c
+						$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-%.o			: $(SRCS_DIR)/%.c
-			$(CC) $(CFLAGS) $(INC) -c $< -o $@
+clean				:
+						$(RM) $(OBJ)
 
-clean		:
-			$(RM) $(OBJ)
+fclean				: clean
+						$(RM) $(NAME)
 
-fclean		:
-			$(RM) $(NAME)
+re					: fclean all
 
-re			: fclean all
-
-.PHONY		: all clean fclean re
+.PHONY				: all clean fclean re
 
 
 
